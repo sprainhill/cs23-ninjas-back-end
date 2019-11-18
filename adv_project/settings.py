@@ -180,3 +180,5 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR,'project_name/static')
 
 import django_heroku
 django_heroku.settings(locals())
+
+#comment to commit
