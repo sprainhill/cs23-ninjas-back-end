@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 import os
 from decouple import config
 import dj_database_url
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -23,11 +24,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('SECRET_KEY')
+# SECRET_KEY = 'Mez[)yagh/{k*{rD2<}2ZNtMqu3ZwBaj;~S?i_K>61?UhlK$J{HV)8#L|?#a?bL'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', cast=bool)
+# DEBUG = 'True'
 
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1',            'nameofapp.herokuapp.com']
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1',            'csninjas.herokuapp.com']
 
 
 # Application definition
@@ -99,19 +102,21 @@ WSGI_APPLICATION = 'adv_project.wsgi.application'
 #     }
 # }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'adventure',
-#         'USER':'postgres',
-#         'PASSWORD':'silopan2',
-#         'HOST':'localhost',
-#         'PORT':'5432',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'adventure',
+        'USER':'postgres',
+        'PASSWORD':'silopan2',
+        'HOST':'localhost',
+        'PORT':'5432',
+    }
+}
 
-db_from_env = dj_database_url.config(conn_max_age=600)
-DATABASES['default'].update(db_from_env)
+
+DATABASES = {
+    'default': dj_database_url.config(default=config('DATABASE_URL'), conn_max_age=600)
+}
 
 
 # Password validation
