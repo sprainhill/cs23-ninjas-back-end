@@ -11,9 +11,9 @@ django-allauth = "*"
 pusher = "*"
 django-cors-headers = "*"
 gunicorn = "*"
-django-heroku = "*"
 django-rest-api = "*"
 python-decouple = "*"
+django-heroku = "*"
 
 [dev-packages]
 
