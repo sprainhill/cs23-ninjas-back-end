@@ -45,5 +45,5 @@ for p in players:
   p.currentRoom=r_outside.id
   p.save()
 
-# comment here to add commit hopefully
+# remove comment
 
