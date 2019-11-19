@@ -93,21 +93,21 @@ WSGI_APPLICATION = 'adv_project.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'adventure',
-        'USER':'postgres',
-        'PASSWORD':'silopan2',
-        'HOST':'localhost',
-        'PORT':'5432',
-    }
-}
-
-
 # DATABASES = {
-#     'default': dj_database_url.config(default=config('DATABASE_URL'), conn_max_age=600)
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'adventure',
+#         'USER':'postgres',
+#         'PASSWORD':'silopan2',
+#         'HOST':'localhost',
+#         'PORT':'5432',
+#     }
 # }
+
+
+DATABASES = {
+    'default': dj_database_url.config(default=config('DATABASE_URL'), conn_max_age=600)
+}
 
 
 # Password validation
