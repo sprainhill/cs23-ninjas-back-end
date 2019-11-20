@@ -93,16 +93,6 @@ WSGI_APPLICATION = 'adv_project.wsgi.application'
 #     }
 # }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'adventure',
-#         'USER':'postgres',
-#         'PASSWORD':'silopan2',
-#         'HOST':'localhost',
-#         'PORT':'5432',
-#     }
-# }
 
 
 DATABASES = {
@@ -166,7 +156,7 @@ STATIC_URL = '/staticfiles/'
 
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR,'staticfiles')
+STATICFILES_DIRS = [os.path.join(BASE_DIR,'staticfiles/img')
 ]
 
 import django_heroku
