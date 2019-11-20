@@ -20,23 +20,7 @@ def initialize(request):
     uuid = player.uuid
     room = player.room()
     players = room.playerNames(player_id)
-    sewer_rooms = Room.objects.filter(sewer=room.sewer)
-    sewer_map = {
-        "sewer": room.sewer,
-        "rooms": [{
-            'id': i.id,
-            'x': i.x,
-            'y': i.y,
-            'n_to': i.n_to,
-            's_to': i.s_to,
-            'e_to': i.e_to,
-            'w_to': i.w_to,
-        }]
-    }
-    rooms_visited = PlayerVisited.objects.filter(player=player)
-    visited_list = [i.room.id for i in rooms_visited]
-    players = room.playerNames(player_id)
-    return JsonResponse({'uuid': uuid, 'name':player.user.username, 'title':room.title, 'description':room.description, 'room_id':room.id, 'players':players}, safe=True)
+    return JsonResponse({'uuid': uuid, 'name':player.user.username, 'title':room.title, 'description':room.description, 'players':players}, safe=True)
 
 
 @csrf_exempt
