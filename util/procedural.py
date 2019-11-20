@@ -1,35 +1,191 @@
 # algorithm to procedurally generate room patterns and content
+class Room:
+    def __init__(self, id, name, description, x, y):
+        self.id = id
+        self.name = name
+        self.description = description
+        self.n_to = None
+        self.s_to = None
+        self.e_to = None
+        self.w_to = None
+        self.x = x
+        self.y = y
+    def __repr__(self):
+        if self.e_to is not None:
+            return f"({self.x}, {self.y}) -> ({self.e_to.x}, {self.e_to.y})"
+        return f"({self.x}, {self.y})"
+    def connect_rooms(self, connecting_room, direction):
+        '''
+        Connect two rooms in the given n/s/e/w direction
+        '''
+        reverse_dirs = {"n": "s", "s": "n", "e": "w", "w": "e"}
+        reverse_dir = reverse_dirs[direction]
+        setattr(self, f"{direction}_to", connecting_room)
+        setattr(connecting_room, f"{reverse_dir}_to", self)
+    def get_room_in_direction(self, direction):
+        '''
+        Connect two rooms in the given n/s/e/w direction
+        '''
+        return getattr(self, f"{direction}_to")
 
-# create world class
-class World():
+
+class World:
     def __init__(self):
         self.grid = None
         self.width = 0
         self.height = 0
+    def generate_rooms(self, size_x, size_y, num_rooms):
+        '''
+        Fill up the grid, bottom to top, in a zig-zag pattern
+        '''
 
-    def create_world(self, x_axis, y_axis):
+        # define grid size
+        # creates height of grid
+        self.grid = [None] * size_y
+        self.width = size_x
+        self.height = size_y
+        for i in range( len(self.grid) ):
+            self.grid[i] = [None] * size_x
+        
+        # begin plot in middle of grid
+
+        # if self.grid[0] is None and self.grid[0][0] is None:
+        #     # set starting room to middle of grid
+        #     start_x = math.ceil(len(self.grid[0]) // 2)
+        #     start_y = math.ceil(len(self.grid) // 2)
+
+        # Start from lower-left corner (0,0)
+        x = -1 # (this will become 0 on the first step)
+        y = 0
+        room_count = 0
+
+        # Start generating rooms to the east
+        direction = 1  # 1: east, -1: west
+
+
+        # While there are rooms to be created...
+        previous_room = None
+        while room_count < num_rooms:
+            if direction > 0 and x < size_x - 1:
+                room_direction = "e"
+                x += 1
+            elif direction < 0 and x > 0:
+                room_direction = "w"
+                x -= 1
+            else:
+                room_direction = "n"
+                y += 1
+                direction *= -1
+            
+            # create room for insertion
+
+            ###
+            ### randomize selection from three lists of attributes
+            ###
+
+
+            # Create a room in the given direction
+            room = Room(room_count, "A Generic Room", "This is a generic room.", x, y)
+
+            ## Create inverse room
+            # inverseX = x *= -1
+            # inverseX = y *= -1
+            # inverse = Room(room_count, "An inverse room", "this is an inverse room.", inverseX, inverseY )
+            
+
+            # insert room into grid
+            # inserts into the x-axis list item within the y-axis list
+            self.grid[y][x] = room
+
+            #insert inverse into grid
+            ###
+            ### do we need to adjust the grid to accept?
+            ###
+            # self.grid[inverseY][inverseX]
+
+            # Connect the new room to the previous room
+            if previous_room is not None:
+                previous_room.connect_rooms(room, room_direction)
+
+            # Update iteration variables
+            previous_room = room
+            room_count += 1
+
+            ## maybe create the inverse room at the end 
+
+            ## iterate over grid
+            ## for each item in the grid
+            ## invert the x and y coordinates
+            ## reverse the connection
+
+            # we have a list in a list
+            # whats a good data structure to use
+            # to iterate over that?
 
 
 
-    # define grid size
-    # creates height of grid
-    self.grid = [None] * y_axis
+    def print_rooms(self):
+        '''
+        Print the rooms in room_grid in ascii characters.
+        '''
 
-    # creates width of the grid
-    # inserts columns into stacked rows
-    for i in range(len(self.grid)):
-        self.grid[i] = [None] x_axis
+        # Add top border
+        str = "# " * ((3 + self.width * 5) // 2) + "\n"
 
-    # begin plot in middle of grid
+        # The console prints top to bottom but our array is arranged
+        # bottom to top.
+        #
+        # We reverse it so it draws in the right direction.
+        reverse_grid = list(self.grid) # make a copy of the list
+        reverse_grid.reverse()
+        for row in reverse_grid:
+            # PRINT NORTH CONNECTION ROW
+            str += "#"
+            for room in row:
+                if room is not None and room.n_to is not None:
+                    str += "  |  "
+                else:
+                    str += "     "
+            str += "#\n"
+            # PRINT ROOM ROW
+            str += "#"
+            for room in row:
+                if room is not None and room.w_to is not None:
+                    str += "-"
+                else:
+                    str += " "
+                if room is not None:
+                    str += f"{room.id}".zfill(3)
+                else:
+                    str += "   "
+                if room is not None and room.e_to is not None:
+                    str += "-"
+                else:
+                    str += " "
+            str += "#\n"
+            # PRINT SOUTH CONNECTION ROW
+            str += "#"
+            for room in row:
+                if room is not None and room.s_to is not None:
+                    str += "  |  "
+                else:
+                    str += "     "
+            str += "#\n"
 
-    if self.grid[0] is None and self.grid[0][0] is None:
-        # set starting room to middle of grid
-        start_x = math.ceil(len(self.grid[0]) // 2)
-        start_y = math.ceil(len(self.grid) // 2)
-    
-    # create room for insertion
-    room = Room("A generic room", "This is a generic room", x, y)
+        # Add bottom border
+        str += "# " * ((3 + self.width * 5) // 2) + "\n"
 
-    # insert room into grid
-    # inserts into the x-axis list item within the y-axis list
-    self.grid[start_x][start_y]
+        # Print string
+        print(str)
+
+
+w = World()
+num_rooms = 80
+width = 10
+height = 10
+w.generate_rooms(width, height, num_rooms)
+w.print_rooms()
+
+
+
+print(f"\n\nWorld\n  height: {height}\n  width: {width},\n  num_rooms: {num_rooms}\n")
