@@ -94,16 +94,6 @@ WSGI_APPLICATION = 'adv_project.wsgi.application'
 #     }
 # }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'adventure',
-#         'USER':'postgres',
-#         'PASSWORD':'silopan2',
-#         'HOST':'localhost',
-#         'PORT':'5432',
-#     }
-# }
 
 
 DATABASES = {

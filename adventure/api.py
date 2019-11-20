@@ -20,9 +20,9 @@ def initialize(request):
     uuid = player.uuid
     room = player.room()
     players = room.playerNames(player_id)
-    planet_rooms = Room.objects.filter(planet=room.planet)
-    planet_map = {
-        "planet": room.planet,
+    sewer_rooms = Room.objects.filter(sewer=room.sewer)
+    sewer_map = {
+        "sewer": room.sewer,
         "rooms": [{
             'id': i.id,
             'x': i.coord_x,
@@ -33,7 +33,10 @@ def initialize(request):
             'w_to': i.w_to,
         }]
     }
-    return JsonResponse({'uuid': uuid, 'name':player.user.username, 'title':room.title, 'description':room.description, 'players':players}, safe=True)
+    rooms_visited = PlayerVisited.objects.filter(player=player)
+    visited_list = [i.room.id for i in rooms_visited]
+    players = room.playerNames(player_id)
+    return JsonResponse({'uuid': uuid, 'name':player.user.username, 'title':room.title, 'description':room.description, 'room_id':room.id, 'players':players}, safe=True)
 
 
 @csrf_exempt
@@ -73,8 +76,16 @@ def move(request):
         return JsonResponse({'name':player.user.username, 'title':room.title, 'description':room.description, 'players':players, 'error_msg':"You cannot move that way."}, safe=True)
 
 
-@csrf_exempt
-@api_view(["POST"])
-def say(request):
-    # IMPLEMENT
-    return JsonResponse({'error':"Not yet implemented"}, safe=True, status=500)
+# @csrf_exempt
+# @api_view(["POST"])
+# def say(request):
+#     data = json.loads(request.body)
+#     player = request.user.player
+#     room = player.room()
+#     players_in_room = room.playerUUIDs(player.id)
+#     pusher.trigger(f'p-channel-{player.uuid}', u'broadcast',
+#                    {'message': f'You say "{data["message"]}"'})
+#     for p_uuid in players_in_room:
+#         pusher.trigger(f'p-channel-{p_uuid}', u'broadcast',
+#                        {'message': f'{player.user.username} says "{data["message"]}".'})
+#     return JsonResponse({'message': "It's Working, It's Working!"}, safe=True)

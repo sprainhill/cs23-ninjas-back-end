@@ -10,6 +10,7 @@ class Room(models.Model):
     description = models.CharField(max_length=500, default="DEFAULT DESCRIPTION")
     coord_x = models.IntegerField(default=0)
     coord_y = models.IntegerField(default=0)
+    sewer = models.IntegerField(default=0)
     n_to = models.IntegerField(default=0)
     s_to = models.IntegerField(default=0)
     e_to = models.IntegerField(default=0)
