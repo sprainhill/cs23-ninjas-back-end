@@ -48,7 +48,7 @@
             "title": "Narrow Passage",
             "description": "The narrow passage bends here from west\nto north. The smell of gold permeates the air.",
             "coord_x": 2,
-            "coord_y": 3,
+            "coord_y": 1,
             "n_to": 5,
             "s_to": 0,
             "e_to": 0,
