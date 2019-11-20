@@ -1,11 +1,4 @@
-# Sample Python code that can be used to generate rooms in
-# a zig-zag pattern.
-#
-# You can modify generate_rooms() to create your own
-# procedural generation algorithm and use print_rooms()
-# to see the world.
-
-
+# algorithm to procedurally generate room patterns and content
 class Room:
     def __init__(self, id, name, description, x, y):
         self.id = id
@@ -46,12 +39,20 @@ class World:
         Fill up the grid, bottom to top, in a zig-zag pattern
         '''
 
-        # Initialize the grid
+        # define grid size
+        # creates height of grid
         self.grid = [None] * size_y
         self.width = size_x
         self.height = size_y
         for i in range( len(self.grid) ):
             self.grid[i] = [None] * size_x
+        
+        # begin plot in middle of grid
+
+        # if self.grid[0] is None and self.grid[0][0] is None:
+        #     # set starting room to middle of grid
+        #     start_x = math.ceil(len(self.grid[0]) // 2)
+        #     start_y = math.ceil(len(self.grid) // 2)
 
         # Start from lower-left corner (0,0)
         x = -1 # (this will become 0 on the first step)
@@ -65,8 +66,6 @@ class World:
         # While there are rooms to be created...
         previous_room = None
         while room_count < num_rooms:
-
-            # Calculate the direction of the room to be created
             if direction > 0 and x < size_x - 1:
                 room_direction = "e"
                 x += 1
@@ -74,17 +73,35 @@ class World:
                 room_direction = "w"
                 x -= 1
             else:
-                # If we hit a wall, turn north and reverse direction
                 room_direction = "n"
                 y += 1
                 direction *= -1
+            
+            # create room for insertion
+
+            ###
+            ### randomize selection from three lists of attributes
+            ###
+
 
             # Create a room in the given direction
             room = Room(room_count, "A Generic Room", "This is a generic room.", x, y)
-            # Note that in Django, you'll need to save the room after you create it
 
-            # Save the room in the World grid
+            ## Create inverse room
+            # inverseX = x *= -1
+            # inverseX = y *= -1
+            # inverse = Room(room_count, "An inverse room", "this is an inverse room.", inverseX, inverseY )
+            
+
+            # insert room into grid
+            # inserts into the x-axis list item within the y-axis list
             self.grid[y][x] = room
+
+            #insert inverse into grid
+            ###
+            ### do we need to adjust the grid to accept?
+            ###
+            # self.grid[inverseY][inverseX]
 
             # Connect the new room to the previous room
             if previous_room is not None:
@@ -93,6 +110,17 @@ class World:
             # Update iteration variables
             previous_room = room
             room_count += 1
+
+            ## maybe create the inverse room at the end 
+
+            ## iterate over grid
+            ## for each item in the grid
+            ## invert the x and y coordinates
+            ## reverse the connection
+
+            # we have a list in a list
+            # whats a good data structure to use
+            # to iterate over that?
 
 
 
@@ -152,11 +180,12 @@ class World:
 
 
 w = World()
-num_rooms = 100
-width = 12
+num_rooms = 80
+width = 10
 height = 10
 w.generate_rooms(width, height, num_rooms)
 w.print_rooms()
+
 
 
 print(f"\n\nWorld\n  height: {height}\n  width: {width},\n  num_rooms: {num_rooms}\n")
