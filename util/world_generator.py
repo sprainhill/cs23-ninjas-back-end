@@ -1,21 +1,17 @@
-# Sample Python code that can be used to generate rooms in
-# a zig-zag pattern.
-#
-# You can modify generate_rooms() to create your own
-# procedural generation algorithm and use print_rooms()
-# to see the world.
 import json
+import math
+import random
 
 
 class Room:
-    def __init__(self, id, name, description, x, y):
+    def __init__(self, id, name, description, x, y, n=0, s=0, e=0, w=0):
         self.id = id
         self.name = name
         self.description = description
-        self.n_to = 0
-        self.s_to = 0
-        self.e_to = 0
-        self.w_to = 0
+        self.n_to = n
+        self.s_to = s
+        self.e_to = e
+        self.w_to = w
         self.x = x
         self.y = y
 
@@ -43,6 +39,7 @@ class World:
         self.grid = None
         self.width = 0
         self.height = 0
+        self.directions = ['n', 's', 'w', 'e']
 
     def generate_rooms(self, size_x, size_y, num_rooms):
         '''
@@ -57,35 +54,50 @@ class World:
         for i in range(len(self.grid)):
             self.grid[i] = [None] * size_x
 
-        # Start from lower-left corner (0,0)
-        x = -1  # (this will become 0 on the first step)
-        y = 0
+        # Start from middle of grid (0,0)
+        x = math.ceil(len(self.grid[0]) / 2)
+        y = math.ceil(len(self.grid) / 2)
         room_count = 0
-
-        # Start generating rooms to the east
-        direction = 1  # 1: east, -1: west
-
-        # While there are rooms to be created...
         previous_room = None
-        while room_count < num_rooms:
+        node_directions = []
 
-            # Calculate the direction of the room to be created
-            if direction > 0 and x < size_x - 1:
-                room_direction = "e"
-                x += 1
-            elif direction < 0 and x > 0:
-                room_direction = "w"
-                x -= 1
-            else:
-                # If we hit a wall, turn north and reverse direction
-                room_direction = "n"
-                y += 1
-                direction *= -1
+        # Check if genesis grid point doesn't exist
+        if self.grid[0] is None and self.grid[0][0] is None:
+            """
+            Create genesis grid point/room
+            """
+            # Generate bewteen 1-4 directions
+            direction_amount = math.floor(random.random() * 4 + 1)
+
+            # Shuffle directions, and set starting nodes directions to create
+            node_directions = random.sample(
+                self.directions, len(direction_amount))
+
+            # Create first room
+            room = Room(room_count, "Forsaken Palace",
+                        "This is a description", x, y)
+
+            # Save the room in the World grid
+            self.grid[y][x] = room
+            # Set previous room
+            previous_room = room
+            # Increment room amount
+            room_count += 1
+        else:
+
+            # generate next room
+            # randomly calculate 0-3 directions, but cant be a connection dir that exists
+            # if it hits end of grid, return
+            # if it generates 0 directions, terminate that specific branch
+            # Rest of nodes in queue
+
+            # Generate random amount direction(s) 0-3
+            # Create room in said direction
+            # Point room to previous direction
 
             # Create a room in the given direction
             room = Room(room_count, "A Generic Room",
                         "This is a generic room.", x, y)
-            # Note that in Django, you'll need to save the room after you create it
 
             # Save the room in the World grid
             self.grid[y][x] = room
@@ -169,7 +181,7 @@ class World:
             formatted_room = {}
 
             formatted_room["model"] = 'adventure.room'
-            formatted_room["pk"] = i + 1
+            formatted_room["pk"] = room.id
             formatted_room["fields"] = {
                 "title": room.name,
                 "description": room.description,
