@@ -10,10 +10,10 @@ class Room:
         self.w_to = None
         self.x = x
         self.y = y
-    def __repr__(self):
-        if self.e_to is not None:
-            return f"({self.x}, {self.y}) -> ({self.e_to.x}, {self.e_to.y})"
-        return f"({self.x}, {self.y})"
+    # def __repr__(self):
+    #     if self.e_to is not None:
+    #         return f"({self.x}, {self.y}) -> ({self.e_to.x}, {self.e_to.y})"
+    #     return f"({self.x}, {self.y})"
     def connect_rooms(self, connecting_room, direction):
         '''
         Connect two rooms in the given n/s/e/w direction
@@ -82,15 +82,18 @@ class World:
             ###
             ### randomize selection from three lists of attributes
             ###
+            ### Create 3 different lists
+            ## use random to assign to variables
+            ## use variables to assign to room
 
 
             # Create a room in the given direction
             room = Room(room_count, "A Generic Room", "This is a generic room.", x, y)
 
             ## Create inverse room
-            # inverseX = x *= -1
-            # inverseX = y *= -1
-            # inverse = Room(room_count, "An inverse room", "this is an inverse room.", inverseX, inverseY )
+            inverseX = x *= -1
+            inverseX = y *= -1
+            inverse = Room(room_count, "An inverse room", "this is an inverse room.", inverseX, inverseY )
             
 
             # insert room into grid
@@ -101,6 +104,7 @@ class World:
             ###
             ### do we need to adjust the grid to accept?
             ###
+            ### maybe create two grids then connect them
             # self.grid[inverseY][inverseX]
 
             # Connect the new room to the previous room
@@ -117,6 +121,7 @@ class World:
             ## for each item in the grid
             ## invert the x and y coordinates
             ## reverse the connection
+            ## EXCEPT for the very first node
 
             # we have a list in a list
             # whats a good data structure to use
@@ -185,6 +190,18 @@ width = 10
 height = 10
 w.generate_rooms(width, height, num_rooms)
 w.print_rooms()
+print(w.grid)
+print("\n\n\n")
+print(w.grid[0])
+print("\n\n\n")
+print(w.grid[0][0].x)
+print(w.grid[0][0].y)
+print("\n\n\n")
+print("\n\n\n")
+print(w.grid[2][3].x)
+print(w.grid[2][3].y)
+print("\n\n\n")
+# print(type(w.grid[0][0].x))
 
 
 
