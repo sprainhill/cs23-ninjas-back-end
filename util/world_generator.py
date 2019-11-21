@@ -4,28 +4,18 @@
 # You can modify generate_rooms() to create your own
 # procedural generation algorithm and use print_rooms()
 # to see the world.
-import random
-from room_generator import ProceduralContent
-
-# pseduo code for adding
-pc = ProceduralContent()
-listy = pc.generator()
-# print(listy)
-# randomSel = random.randint(0, len(listy))
-# listy[randomSel]['name']
-# listy[randomSel]['desc']
-# listy.pop(randomSel)
+import json
 
 
 class Room:
-    def __init__(self, id, name, description, x, y, n=0, s=0, e=0, w=0):
+    def __init__(self, id, name, description, x, y):
         self.id = id
         self.name = name
         self.description = description
-        self.n_to = n
-        self.s_to = s
-        self.e_to = e
-        self.w_to = w
+        self.n_to = 0
+        self.s_to = 0
+        self.e_to = 0
+        self.w_to = 0
         self.x = x
         self.y = y
 
@@ -36,14 +26,10 @@ class Room:
         '''
         Connect two rooms in the given n/s/e/w direction
         '''
-        if direction == "n":
-            self.n_to = connecting_room.id
-        elif direction == "s":
-            self.s_to = connecting_room.id
-        elif direction == "e":
-            self.e_to = connecting_room.id
-        else:
-            self.w_to = connecting_room.id
+        reverse_dirs = {"n": "s", "s": "n", "e": "w", "w": "e"}
+        reverse_dir = reverse_dirs[direction]
+        setattr(self, f"{direction}_to", connecting_room)
+        setattr(connecting_room, f"{reverse_dir}_to", self)
 
     def get_room_in_direction(self, direction):
         '''
@@ -67,6 +53,7 @@ class World:
         self.grid = [None] * size_y
         self.width = size_x
         self.height = size_y
+
         for i in range(len(self.grid)):
             self.grid[i] = [None] * size_x
 
@@ -169,15 +156,20 @@ class World:
         """
         Generates create_world fixture
         """
+
         # Flatten grid of rooms
         flat_list = [item for sublist in self.grid for item in sublist]
+
         formatted_fixture = []
+
         for i, room in enumerate(flat_list, start=0):
             if room is None:
-                continue
+                break
+
             formatted_room = {}
+
             formatted_room["model"] = 'adventure.room'
-            formatted_room["pk"] = room.id
+            formatted_room["pk"] = i + 1
             formatted_room["fields"] = {
                 "title": room.name,
                 "description": room.description,
@@ -188,18 +180,19 @@ class World:
                 "x": room.x,
                 "y": room.y,
             }
+
             formatted_fixture.append(formatted_room)
+
         f = open('generated_world.json', "w+")
         f.write(str(formatted_fixture))
         f.close()
 
 
 w = World()
-num_rooms = 100
-width = 12
-height = 10
+num_rooms = 3
+width = 8
+height = 7
 w.generate_rooms(width, height, num_rooms)
-# w.print_rooms()
 w.gen_fixture()
 
 
