@@ -203,9 +203,9 @@ class World:
 
 
 w = World()
-num_rooms = 100
-width = 12
-height = 10
+num_rooms = 501
+width = 30
+height = 25
 w.generate_rooms(width, height, num_rooms)
 # w.print_rooms()
 w.gen_fixture()
