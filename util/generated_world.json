@@ -1,0 +1,1 @@
+[{'model': 'adventure.room', 'pk': 1, 'fields': {'title': 'Forsaken Palace', 'description': 'This is a description', 'n_to': 2, 's_to': 0, 'e_to': 0, 'w_to': 0, 'x': 4, 'y': 4}}, {'model': 'adventure.room', 'pk': 2, 'fields': {'title': 'A Generic Room', 'description': 'This is a generic room.', 'n_to': 0, 's_to': 0, 'e_to': 0, 'w_to': 0, 'x': 4, 'y': 5}}]
