@@ -4,6 +4,7 @@ import json
 import sys
 sys.path.append('../data_structures')
 from dll_queue import Queue
+
 class Room:
     def __init__(self, id, name, description, x, y, n=0, s=0, e=0, w=0):
         self.id = id
@@ -33,6 +34,7 @@ class Room:
         else:
             self.w_to = connecting_room.id
             connecting_room.e_to = self.id
+
     def get_room_in_direction(self, direction):
         '''
         Connect two rooms in the given n/s/e/w direction
@@ -62,6 +64,7 @@ class World:
         node_directions = []
         nodes = Queue()
         current_node = Queue()
+
         # Check if genesis grid point doesn't exist
         if self.grid[y][x] is None:
             """
@@ -75,6 +78,7 @@ class World:
             # Create first room
             room = Room(room_count, "Forsaken Palace",
                         "This is a description", x, y)
+
             # Add room to queue
             current_node.enqueue(room)
             # Save the room in the World grid
@@ -84,11 +88,14 @@ class World:
             # Increment room amount
             room_count += 1
         while room_count < num_rooms:
+            print("Room count", room_count)
             print(f"node_directions : {node_directions}")
             print(f"node_directions : {nodes}")
+
             if node_directions:
                 current_room = current_node.dequeue()
                 direction = node_directions[0]
+
                 if current_room is None:
                     break
                 if direction == "n":
@@ -103,8 +110,10 @@ class World:
                 else:
                     room_direction = "w"
                     x = current_room.x - 1
+
                 room = Room(room_count, "A Generic Room",
                             "This is a generic room.", x, y)
+
                 # Add room to queue
                 node_directions = node_directions[1:]
                 nodes.enqueue(room)
@@ -152,6 +161,7 @@ class World:
                 if previous_room is not None:
                     previous_room.connect_rooms(room, room_direction)
                 # Update iteration variables
+
                 previous_room = room
                 room_count += 1
     def print_rooms(self):
@@ -234,6 +244,7 @@ w = World()
 num_rooms = 501
 width = 60
 height = 60
+
 w.generate_rooms(width, height, num_rooms)
 w.gen_fixture()
 print(
