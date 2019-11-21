@@ -162,4 +162,4 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR,'staticfiles/img')
 import django_heroku
 django_heroku.settings(locals())
 
-
+# Comment to commit
