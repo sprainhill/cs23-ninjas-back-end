@@ -1,3 +1,7 @@
+import sys
+sys.path.append('../data_structures')
+from dll_queue import Queue
+
 import json
 import math
 import random
@@ -22,10 +26,14 @@ class Room:
         '''
         Connect two rooms in the given n/s/e/w direction
         '''
-        reverse_dirs = {"n": "s", "s": "n", "e": "w", "w": "e"}
-        reverse_dir = reverse_dirs[direction]
-        setattr(self, f"{direction}_to", connecting_room)
-        setattr(connecting_room, f"{reverse_dir}_to", self)
+        if direction == "n":
+            self.n_to = connecting_room.id
+        elif direction == "s":
+            self.s_to = connecting_room.id
+        elif direction == "e":
+            self.e_to = connecting_room.id
+        else:
+            self.w_to = connecting_room.id
 
     def get_room_in_direction(self, direction):
         '''
@@ -39,7 +47,7 @@ class World:
         self.grid = None
         self.width = 0
         self.height = 0
-        self.directions = ['n', 's', 'w', 'e']
+        self.directions = ['n', 's', 'e', 'w']
 
     def generate_rooms(self, size_x, size_y, num_rooms):
         '''
@@ -57,12 +65,13 @@ class World:
         # Start from middle of grid (0,0)
         x = math.ceil(len(self.grid[0]) / 2)
         y = math.ceil(len(self.grid) / 2)
-        room_count = 0
+        room_count = 1
         previous_room = None
         node_directions = []
+        nodes = Queue()
 
         # Check if genesis grid point doesn't exist
-        if self.grid[0] is None and self.grid[0][0] is None:
+        if self.grid[0][0] is None:
             """
             Create genesis grid point/room
             """
@@ -71,44 +80,99 @@ class World:
 
             # Shuffle directions, and set starting nodes directions to create
             node_directions = random.sample(
-                self.directions, len(direction_amount))
+                self.directions, direction_amount)
 
             # Create first room
             room = Room(room_count, "Forsaken Palace",
                         "This is a description", x, y)
 
+            # Add room to queue
+            nodes.enqueue(room)
             # Save the room in the World grid
             self.grid[y][x] = room
             # Set previous room
             previous_room = room
             # Increment room amount
             room_count += 1
-        else:
 
-            # generate next room
-            # randomly calculate 0-3 directions, but cant be a connection dir that exists
-            # if it hits end of grid, return
-            # if it generates 0 directions, terminate that specific branch
-            # Rest of nodes in queue
+        while room_count < num_rooms:
+            if node_directions is not None:
+                current_room = nodes.dequeue()
+                direction = node_directions[0]
 
-            # Generate random amount direction(s) 0-3
-            # Create room in said direction
-            # Point room to previous direction
+                if current_room is None:
+                    break
 
-            # Create a room in the given direction
-            room = Room(room_count, "A Generic Room",
-                        "This is a generic room.", x, y)
+                if direction == "n":
+                    room_direction = "n"
+                    y = current_room.y + 1
+                elif direction == "s":
+                    room_direction = "s"
+                    y = current_room.y - 1
+                elif direction == "e":
+                    room_direction = "e"
+                    x = current_room.x + 1
+                else:
+                    room_direction = "w"
+                    x = current_room.x - 1
 
-            # Save the room in the World grid
-            self.grid[y][x] = room
+                room = Room(room_count, "A Generic Room",
+                            "This is a generic room.", x, y)
 
-            # Connect the new room to the previous room
-            if previous_room is not None:
-                previous_room.connect_rooms(room, room_direction)
+                # Add room to queue
+                nodes.enqueue(room)
+                # Save the room in the World grid
+                self.grid[y][x] = room
+                # Connect the new room to the previous room
+                if previous_room is not None:
+                    previous_room.connect_rooms(room, room_direction)
 
-            # Update iteration variables
-            previous_room = room
-            room_count += 1
+                # Update iteration variables
+                previous_room = room
+                room_count += 1
+            else:
+                current_room = Queue.dequeue()
+
+                if current_room is None:
+                    break
+
+                # Generate bewteen 1-4 directions
+                direction_amount = math.floor(random.random() * 4 + 1)
+
+                # Shuffle directions, and set starting nodes directions to create
+                node_directions = random.sample(
+                    self.directions, len(direction_amount))
+
+                # Get next direction to go in
+                direction = node_directions[0]
+
+                if direction == "n":
+                    room_direction = "n"
+                    y = current_room.y + 1
+                elif direction == "s":
+                    room_direction = "s"
+                    y = current_room.y - 1
+                elif direction == "e":
+                    room_direction = "e"
+                    x = current_room.x + 1
+                else:
+                    room_direction = "w"
+                    x = current_room.x - 1
+
+                room = Room(room_count, "A Generic Room",
+                            "This is a generic room.", x, y)
+
+                # Add room to queue
+                nodes.enqueue(room)
+                # Save the room in the World grid
+                self.grid[y][x] = room
+                # Connect the new room to the previous room
+                if previous_room is not None:
+                    previous_room.connect_rooms(room, room_direction)
+
+                # Update iteration variables
+                previous_room = room
+                room_count += 1
 
     def print_rooms(self):
         '''
@@ -176,7 +240,7 @@ class World:
 
         for i, room in enumerate(flat_list, start=0):
             if room is None:
-                break
+                continue
 
             formatted_room = {}
 
