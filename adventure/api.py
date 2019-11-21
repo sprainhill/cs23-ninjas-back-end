@@ -34,8 +34,8 @@ def initialize(request):
             'w_to': i.w_to,
         } for i in sewer_rooms]
     }
-    # rooms_visited = PlayerVisited.objects.filter(player=player)
-    # visited_list = [i.room.id for i in rooms_visited]
+    rooms_visited = PlayerVisited.objects.filter(player=player)
+    visited_list = [i.room.id for i in rooms_visited]
     players = room.playerNames(player_id)
 
     return JsonResponse({'uuid': uuid, 'name':player.user.username, 'title':room.title, 'description':room.description, 'players':players, 'room_id': room.id}, safe=True)
