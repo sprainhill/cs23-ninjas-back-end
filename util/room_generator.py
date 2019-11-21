@@ -32,7 +32,7 @@ class ProceduralContent:
         self.l3 = [{"name": "Palace", "desc": "An ornamental monstrosity"},
                    {"name": "Crypt", "desc": "Those buried here will never rest in peace"},
                    {"name": "Passage", "desc": "For a player on the go"},
-                   {"name": "Stairwell", "desc": "Don't trip"},
+                   {"name": "Stairwell", "desc": "Do not trip"},
                    {"name": "Burrows", "desc": "A field of danger"},
                    {"name": "Grotto", "desc": "A faeries light..."},
                    {"name": "NYT", "desc": "A lot of people say its failing"},
