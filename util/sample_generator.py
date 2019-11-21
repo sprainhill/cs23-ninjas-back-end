@@ -38,12 +38,16 @@ class Room:
         '''
         if direction == "n":
             self.n_to = connecting_room.id
+            connecting_room.s_to = self.id
         elif direction == "s":
             self.s_to = connecting_room.id
+            connecting_room.n_to = self.id
         elif direction == "e":
             self.e_to = connecting_room.id
+            connecting_room.w_to = self.id
         else:
             self.w_to = connecting_room.id
+            connecting_room.e_to = self.id
 
     def get_room_in_direction(self, direction):
         '''
@@ -73,7 +77,7 @@ class World:
         # Start from lower-left corner (0,0)
         x = -1  # (this will become 0 on the first step)
         y = 0
-        room_count = 0
+        room_count = 1
 
         # Start generating rooms to the east
         direction = 1  # 1: east, -1: west
