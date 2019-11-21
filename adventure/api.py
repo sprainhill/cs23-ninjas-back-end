@@ -25,8 +25,8 @@ def initialize(request):
         "sewer": room.sewer,
         "rooms": [{
             'id': i.id,
-            'x': i.coord_x,
-            'y': i.coord_y,
+            'x': i.x,
+            'y': i.y,
             'n_to': i.n_to,
             's_to': i.s_to,
             'e_to': i.e_to,
@@ -89,3 +89,5 @@ def say(request):
         pusher.trigger(f'p-channel-{p_uuid}', u'broadcast',
                        {'message': f'{player.user.username} says "{data["message"]}".'})
     return JsonResponse({'message': "It's Working, It's Working!"}, safe=True)
+
+    # Add content to create a commit for heroku
