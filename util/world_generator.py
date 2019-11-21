@@ -1,10 +1,9 @@
-from dll_queue import Queue
 import random
 import math
 import json
 import sys
 sys.path.append('../data_structures')
-
+from dll_queue import Queue
 
 class Room:
     def __init__(self, id, name, description, x, y, n=0, s=0, e=0, w=0):
@@ -17,10 +16,8 @@ class Room:
         self.w_to = w
         self.x = x
         self.y = y
-
     def __repr__(self):
         return f"{self.x}"
-
     def connect_rooms(self, connecting_room, direction):
         '''
         Connect two rooms in the given n/s/e/w direction
@@ -43,15 +40,12 @@ class Room:
         Connect two rooms in the given n/s/e/w direction
         '''
         return getattr(self, f"{direction}_to")
-
-
 class World:
     def __init__(self):
         self.grid = None
         self.width = 0
         self.height = 0
         self.directions = ['n', 's', 'e', 'w']
-
     def generate_rooms(self, size_x, size_y, num_rooms):
         '''
         Fill up the grid, bottom to top, in a zig-zag pattern
@@ -124,7 +118,6 @@ class World:
                 node_directions = node_directions[1:]
                 nodes.enqueue(room)
                 current_node.enqueue(current_room)
-
                 # Save the room in the World grid
                 self.grid[y][x] = room
                 # Connect the new room to the previous room
@@ -145,7 +138,6 @@ class World:
                     self.directions, direction_amount)
                 # Get next direction to go in
                 direction = node_directions[0]
-
                 if direction == "n":
                     room_direction = "n"
                     y = current_room.y + 1
@@ -165,85 +157,13 @@ class World:
                 current_node.enqueue(room)
                 # Save the room in the World grid
                 self.grid[y][x] = room
-
-
-<< << << < HEAD
                 # Connect the new room to the previous room
                 if previous_room is not None:
                     previous_room.connect_rooms(room, room_direction)
                 # Update iteration variables
-== == == =
-                # Set previous room
->>>>>> > 0c5996850227979bcf7ec65c2d94a500413501d7
-                previous_room = room
-                # Increment room amount
-                room_count += 1
-            while room_count < num_rooms:
-                if node_directions is not None:
-                    current_room = nodes.dequeue()
-                    direction = node_directions[0]
-                    if current_room is None:
-                        break
-                    if direction == "n":
-                        room_direction = "n"
-                        y = current_room.y + 1
-                    elif direction == "s":
-                        room_direction = "s"
-                        y = current_room.y - 1
-                    elif direction == "e":
-                        room_direction = "e"
-                        x = current_room.x + 1
-                    else:
-                        room_direction = "w"
-                        x = current_room.x - 1
-                    room = Room(room_count, "A Generic Room",
-                                "This is a generic room.", x, y)
-                    # Add room to queue
-                    nodes.enqueue(room)
-                    # Save the room in the World grid
-                    self.grid[y][x] = room
-                    # Connect the new room to the previous room
-                    if previous_room is not None:
-                        previous_room.connect_rooms(room,   room_direction)
-                    # Update iteration variables
-                    previous_room = room
-                    room_count += 1
-                else:
-                    current_room = Queue.dequeue()
-                    if current_room is None:
-                        break
-                    # Generate bewteen 1-4 directions
-                    direction_amount = math.floor(random.random() * 4 +     1)
-                    # Shuffle directions, and set starting nodes    directions to create
-                    node_directions = random.sample(
-                        self.directions, len(direction_amount))
-                    # Get next direction to go in
-                    direction = node_directions[0]
-                    if direction == "n":
-                        room_direction = "n"
-                        y = current_room.y + 1
-                    elif direction == "s":
-                        room_direction = "s"
-                        y = current_room.y - 1
-                    elif direction == "e":
-                        room_direction = "e"
-                        x = current_room.x + 1
-                    else:
-                        room_direction = "w"
-                        x = current_room.x - 1
-                    room = Room(room_count, "A Generic Room",
-                                "This is a generic room.", x, y)
-                    # Add room to queue
-                    nodes.enqueue(room)
-                    # Save the room in the World grid
-                    self.grid[y][x] = room
-                    # Connect the new room to the previous room
-                    if previous_room is not None:
-                        previous_room.connect_rooms(room,   room_direction)
-                    # Update iteration variables
-                    previous_room = room
-                    room_count += 1
 
+                previous_room = room
+                room_count += 1
     def print_rooms(self):
         '''
         Print the rooms in room_grid in ascii characters.
@@ -293,7 +213,6 @@ class World:
         str += "# " * ((3 + self.width * 5) // 2) + "\n"
         # Print string
         print(str)
-
     def gen_fixture(self):
         """
         Generates create_world fixture
@@ -321,12 +240,11 @@ class World:
         f = open('generated_world.json', "w+")
         f.write(str(formatted_fixture))
         f.close()
-
-
 w = World()
-num_rooms = 1000
-width = 2000
-height = 2000
+num_rooms = 501
+width = 60
+height = 60
+
 w.generate_rooms(width, height, num_rooms)
 w.gen_fixture()
 print(
