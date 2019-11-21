@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
-# from pusher import Pusher
+from pusher import Pusher
 from django.http import JsonResponse
 from decouple import config
 from django.contrib.auth.models import User
@@ -9,17 +9,17 @@ from rest_framework.decorators import api_view
 import json
 
 # instantiate pusher
-# pusher = Pusher(app_id=config('PUSHER_APP_ID'), key=config('PUSHER_KEY'), secret=config('PUSHER_SECRET'), cluster=config('PUSHER_CLUSTER'))
+pusher = Pusher(app_id=config('PUSHER_APP_ID'), key=config('PUSHER_KEY'), secret=config('PUSHER_SECRET'), cluster=config('PUSHER_CLUSTER'))
 
-# @csrf_exempt
-# @api_view(['POST'])
-# def pusher_auth(request):
-#     print(request)
-#     auth = pusher.authenticate(
-#         channel=request.form['presence-main-channel'],
-#         socket_id=request.form['socket_id']
-#     )
-#     return json.dumps(auth)
+@csrf_exempt
+@api_view(['POST'])
+def pusher_auth(request):
+    print(request)
+    auth = pusher.authenticate(
+        channel=request.form['presence-main-channel'],
+        socket_id=request.form['socket_id']
+    )
+    return json.dumps(auth)
 
 @csrf_exempt
 @api_view(["GET"])
@@ -86,22 +86,22 @@ def move(request):
         nextPlayerUUIDs = nextRoom.playerUUIDs(player_id)
         rooms_visited = PlayerVisited.objects.filter(player=player)
         visited_list = [i.room.id for i in rooms_visited]
-        # pusher.trigger(f'p-channel-{player.uuid}', u'broadcast', {
-        #     'message': f'You walk {dirs[direction]}.'})
-        # for p_uuid in currentPlayerUUIDs:
-        #     pusher.trigger(f'p-channel-{p_uuid}', u'broadcast', {
-        #                    'message': f'{player.user.username} has walked {dirs[direction]}.'})
-        # for p_uuid in nextPlayerUUIDs:
-        #     pusher.trigger(f'p-channel-{p_uuid}', u'broadcast', {
-        #                    'message': f'{player.user.username} has entered from the {reverse_dirs[direction]}.'})
+        pusher.trigger(f'p-channel-{player.uuid}', u'broadcast', {
+            'message': f'You walk {dirs[direction]}.'})
+        for p_uuid in currentPlayerUUIDs:
+            pusher.trigger(f'p-channel-{p_uuid}', u'broadcast', {
+                           'message': f'{player.user.username} has walked {dirs[direction]}.'})
+        for p_uuid in nextPlayerUUIDs:
+            pusher.trigger(f'p-channel-{p_uuid}', u'broadcast', {
+                           'message': f'{player.user.username} has entered from the {reverse_dirs[direction]}.'})
         return JsonResponse({'name': player.user.username, 'inventory': player.items(), 'room_id': nextRoom.id, 'title': nextRoom.title, 'description': description, 'room_items': nextRoom.items(), 'players': players, 'visited': visited_list, 'error_msg': ""}, safe=True)
     else:
         players = room.playerNames(player_id)
         description = room.description
         if player.hasVisited(room) and room.description_b:
             description = nextRoom.description_b
-        # pusher.trigger(f'p-channel-{player.uuid}', u'broadcast', {
-        #     'message': 'You cannot go that way.'})
+        pusher.trigger(f'p-channel-{player.uuid}', u'broadcast', {
+            'message': 'You cannot go that way.'})
         return JsonResponse({'name': player.user.username, 'inventory': player.items(), 'room_id': room.id, 'title': room.title, 'description': description, 'room_items': room.items(), 'players': players, 'error_msg': "You cannot move that way."}, safe=True)
 
 
@@ -140,11 +140,11 @@ def get_item(request):
         pi = PlayerItem(player=player, item=item)
     pi.save()
     currentPlayerUUIDs = room.playerUUIDs(player_id)
-    # pusher.trigger(f'p-channel-{player.uuid}', u'broadcast',
-    #                {'message': f'You picked up {item.name}.'})
-    # for p_uuid in currentPlayerUUIDs:
-    #     pusher.trigger(f'p-channel-{p_uuid}', u'broadcast',
-    #                    {'message': f'{player.user.username} picked up {item.name}.'})
+    pusher.trigger(f'p-channel-{player.uuid}', u'broadcast',
+                   {'message': f'You picked up {item.name}.'})
+    for p_uuid in currentPlayerUUIDs:
+        pusher.trigger(f'p-channel-{p_uuid}', u'broadcast',
+                       {'message': f'{player.user.username} picked up {item.name}.'})
     return JsonResponse({'inventory': player.items(), 'room_items': room.items()})
 
 
@@ -176,11 +176,11 @@ def drop_item(request):
         ri = RoomItem(room=room, item=item)
     ri.save()
     currentPlayerUUIDs = room.playerUUIDs(player_id)
-    # pusher.trigger(f'p-channel-{player.uuid}', u'broadcast',
-    #                {'message': f'You dropped {item.name}.'})
-    # for p_uuid in currentPlayerUUIDs:
-    #     pusher.trigger(f'p-channel-{p_uuid}', u'broadcast',
-    #                    {'message': f'{player.user.username} picked up {item.name}.'})
+    pusher.trigger(f'p-channel-{player.uuid}', u'broadcast',
+                   {'message': f'You dropped {item.name}.'})
+    for p_uuid in currentPlayerUUIDs:
+        pusher.trigger(f'p-channel-{p_uuid}', u'broadcast',
+                       {'message': f'{player.user.username} picked up {item.name}.'})
     return JsonResponse({'inventory': player.items(), 'room_items': room.items()})
 
 
@@ -199,7 +199,7 @@ def look_item(request):
         PlayerItem.objects.filter(player=player, item=item).exists() or 
         RoomItem.objects.filter(room=player.room(), item=item).exists()
     ):
-        # pusher.trigger(f'p-channel-{player.uuid}', u'broadcast', {'message': item.description})
+        pusher.trigger(f'p-channel-{player.uuid}', u'broadcast', {'message': item.description})
         return JsonResponse({'status': 200})
     else:
         return JsonResponse({'error_msg': "No such item here."})
@@ -212,11 +212,11 @@ def say(request):
     player = request.user.player
     room = player.room()
     players_in_room = room.playerUUIDs(player.id)
-    # pusher.trigger(f'p-channel-{player.uuid}', u'broadcast',
-    #                {'message': f'You say "{data["message"]}"'})
-    # for p_uuid in players_in_room:
-    #     pusher.trigger(f'p-channel-{p_uuid}', u'broadcast',
-    #                    {'message': f'{player.user.username} says "{data["message"]}".'})
+    pusher.trigger(f'p-channel-{player.uuid}', u'broadcast',
+                   {'message': f'You say "{data["message"]}"'})
+    for p_uuid in players_in_room:
+        pusher.trigger(f'p-channel-{p_uuid}', u'broadcast',
+                       {'message': f'{player.user.username} says "{data["message"]}".'})
     return JsonResponse({'message': "Totally implemented"}, safe=True)
 
 
@@ -226,10 +226,10 @@ def shout(request):
     data = json.loads(request.body)
     player = request.user.player
     room = player.room()
-    # pusher.trigger(f'p-channel-{player.uuid}', u'broadcast', {
-    #                'message': f'You shout "{data["message"]}".'})
-    # pusher.trigger(f'presence-main-channel', u'broadcast',
-    #                {'message': f'{player.user.username} (Room: {room.title}) shouts "{data["message"]}".'})
+    pusher.trigger(f'p-channel-{player.uuid}', u'broadcast', {
+                   'message': f'You shout "{data["message"]}".'})
+    pusher.trigger(f'presence-main-channel', u'broadcast',
+                   {'message': f'{player.user.username} (Room: {room.title}) shouts "{data["message"]}".'})
     return JsonResponse({'message': "Totally implemented"}, safe=True)
 
 
@@ -241,10 +241,10 @@ def whisper(request):
     target = User.objects.get(username=data["target"])
     target_uuid = target.player.uuid
     room = player.room()
-    # pusher.trigger(f'p-channel-{player.uuid}', u'broadcast', {
-    #                'message': f'You whisper to {data["target"]} "{data["message"]}".'})
-    # pusher.trigger(f'p-channel-{target_uuid}', u'broadcast', {
-    #                'message': f'{player.user.username} (Room: {room.title}) whispers "{data["message"]}".'})
+    pusher.trigger(f'p-channel-{player.uuid}', u'broadcast', {
+                   'message': f'You whisper to {data["target"]} "{data["message"]}".'})
+    pusher.trigger(f'p-channel-{target_uuid}', u'broadcast', {
+                   'message': f'{player.user.username} (Room: {room.title}) whispers "{data["message"]}".'})
     return JsonResponse({'message': "Totally implemented"}, safe=True)
 
 
