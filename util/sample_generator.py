@@ -11,10 +11,10 @@ from room_generator import ProceduralContent
 pc = ProceduralContent()
 listy = pc.generator()
 # print(listy)
-# randomSel = random.randint(0, len(listy))
-# listy[randomSel]['name']
-# listy[randomSel]['desc']
-# listy.pop(randomSel)
+randomSel = random.randint(0, len(listy))
+listy[randomSel]['name']
+listy[randomSel]['desc']
+listy.pop(randomSel)
 
 
 class Room:
@@ -96,8 +96,12 @@ class World:
                 direction *= -1
 
             # Create a room in the given direction
-            room = Room(room_count, "A Generic Room",
-                        "This is a generic room.", x, y)
+            randomSel = random.randint(0, len(listy))
+            name = listy[randomSel]['name']
+            desc = listy[randomSel]['desc']
+            listy.pop(randomSel)
+            room = Room(room_count, name,
+                        desc, x, y)
             # Note that in Django, you'll need to save the room after you create it
 
             # Save the room in the World grid
