@@ -5,7 +5,7 @@
     "fields": {
       "title": "Eerie Failing Passage",
       "description": "For a player on the go",
-      "description_b": "The night is long and full of terrors"
+      "description_b": "The night is long and full of terrors",
       "n_to": 0,
       "s_to": 0,
       "e_to": 1,
@@ -20,7 +20,7 @@
     "fields": {
       "title": "Eternal Forsaken Grotto",
       "description": "A faeries light...",
-      "description_b": "The night is long and full of terrors"
+      "description_b": "The night is long and full of terrors",
       "n_to": 0,
       "s_to": 0,
       "e_to": 2,
@@ -49,6 +49,7 @@
     "fields": {
       "title": "Cold Decaying Pits",
       "description": "Deep in the muck",
+      "description_b": "Dracarys",
       "n_to": 0,
       "s_to": 0,
       "e_to": 4,
