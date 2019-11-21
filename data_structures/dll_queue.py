@@ -1,6 +1,6 @@
-from doubly_linked_list import DoublyLinkedList
-import sys
-sys.path.append('./doubly_linked_list')
+from dll import DoublyLinkedList
+# import sys
+# sys.path.append('./dll')
 
 
 class Queue:
