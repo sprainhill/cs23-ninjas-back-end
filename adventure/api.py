@@ -36,7 +36,7 @@ def initialize(request):
     }
     # rooms_visited = PlayerVisited.objects.filter(player=player)
     # visited_list = [i.room.id for i in rooms_visited]
-    # players = room.playerNames(player_id)
+    players = room.playerNames(player_id)
 
     return JsonResponse({'uuid': uuid, 'name':player.user.username, 'title':room.title, 'description':room.description, 'players':players, 'room_id': room.id}, safe=True)
 
