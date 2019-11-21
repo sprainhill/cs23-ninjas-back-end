@@ -1,0 +1,1405 @@
+[
+  {
+    "model": "adventure.room",
+    "pk": 0,
+    "fields": {
+      "title": "Eerie Failing Passage",
+      "description": "For a player on the go",
+      "description_b": "The night is long and full of terrors",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 1,
+      "w_to": 0,
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 1,
+    "fields": {
+      "title": "Eternal Forsaken Grotto",
+      "description": "A faeries light...",
+      "description_b": "The night is long and full of terrors",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 2,
+      "w_to": 0,
+      "x": 1,
+      "y": 0
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 2,
+    "fields": {
+      "title": "Pulsing Forsaken Palace",
+      "description": "An ornamental monstrosity",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 3,
+      "w_to": 0,
+      "x": 2,
+      "y": 0
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 3,
+    "fields": {
+      "title": "Cold Decaying Pits",
+      "description": "Deep in the muck",
+      "description_b": "Dracarys",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 4,
+      "w_to": 0,
+      "x": 3,
+      "y": 0
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 4,
+    "fields": {
+      "title": "Cold Failing Palace",
+      "description": "An ornamental monstrosity",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 5,
+      "w_to": 0,
+      "x": 4,
+      "y": 0
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 5,
+    "fields": {
+      "title": "Eerie Smoldering Crypt",
+      "description": "Those buried here will never rest in peace",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 6,
+      "w_to": 0,
+      "x": 5,
+      "y": 0
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 6,
+    "fields": {
+      "title": "Eternal Wooden Burrows",
+      "description": "A field of danger",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 7,
+      "w_to": 0,
+      "x": 6,
+      "y": 0
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 7,
+    "fields": {
+      "title": "Cold Picturesque Crypt",
+      "description": "Those buried here will never rest in peace",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 8,
+      "w_to": 0,
+      "x": 7,
+      "y": 0
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 8,
+    "fields": {
+      "title": "Puny Decaying Crypt",
+      "description": "Those buried here will never rest in peace",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 9,
+      "w_to": 0,
+      "x": 8,
+      "y": 0
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 9,
+    "fields": {
+      "title": "Superflous Failing NYT",
+      "description": "A lot of people say its failing",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 10,
+      "w_to": 0,
+      "x": 9,
+      "y": 0
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 10,
+    "fields": {
+      "title": "Eternal Drafty Grotto",
+      "description": "A faeries light...",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 11,
+      "w_to": 0,
+      "x": 10,
+      "y": 0
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 11,
+    "fields": {
+      "title": "Marvelous Wooden Grotto",
+      "description": "A faeries light...",
+      "n_to": 12,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 0,
+      "x": 11,
+      "y": 0
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 23,
+    "fields": {
+      "title": "Superflous Drafty Grotto",
+      "description": "A faeries light...",
+      "n_to": 24,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 0,
+      "x": 0,
+      "y": 1
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 22,
+    "fields": {
+      "title": "Eternal Granite Crypt",
+      "description": "Those buried here will never rest in peace",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 23,
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 21,
+    "fields": {
+      "title": "Eternal Granite Grotto",
+      "description": "A faeries light...",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 22,
+      "x": 2,
+      "y": 1
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 20,
+    "fields": {
+      "title": "Superflous Forsaken Stairwell",
+      "description": "Don't trip",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 21,
+      "x": 3,
+      "y": 1
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 19,
+    "fields": {
+      "title": "Superflous Granite Pits",
+      "description": "Deep in the muck",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 20,
+      "x": 4,
+      "y": 1
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 18,
+    "fields": {
+      "title": "Cold Granite Stairwell",
+      "description": "Don't trip",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 19,
+      "x": 5,
+      "y": 1
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 17,
+    "fields": {
+      "title": "Eerie Forsaken Passage",
+      "description": "For a player on the go",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 18,
+      "x": 6,
+      "y": 1
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 16,
+    "fields": {
+      "title": "Pulsing Picturesque Palace",
+      "description": "An ornamental monstrosity",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 17,
+      "x": 7,
+      "y": 1
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 15,
+    "fields": {
+      "title": "Cold Forsaken Stairwell",
+      "description": "Don't trip",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 16,
+      "x": 8,
+      "y": 1
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 14,
+    "fields": {
+      "title": "Eternal Smoldering Burrows",
+      "description": "A field of danger",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 15,
+      "x": 9,
+      "y": 1
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 13,
+    "fields": {
+      "title": "Eerie Forsaken NYT",
+      "description": "A lot of people say its failing",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 14,
+      "x": 10,
+      "y": 1
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 12,
+    "fields": {
+      "title": "Puny Decaying Palace",
+      "description": "An ornamental monstrosity",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 13,
+      "x": 11,
+      "y": 1
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 24,
+    "fields": {
+      "title": "Cold Smoldering Burrows",
+      "description": "A field of danger",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 25,
+      "w_to": 0,
+      "x": 0,
+      "y": 2
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 25,
+    "fields": {
+      "title": "Eerie Decaying Grotto",
+      "description": "A faeries light...",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 26,
+      "w_to": 0,
+      "x": 1,
+      "y": 2
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 26,
+    "fields": {
+      "title": "Angry Failing Stairwell",
+      "description": "Don't trip",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 27,
+      "w_to": 0,
+      "x": 2,
+      "y": 2
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 27,
+    "fields": {
+      "title": "Angry Granite NYT",
+      "description": "A lot of people say its failing",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 28,
+      "w_to": 0,
+      "x": 3,
+      "y": 2
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 28,
+    "fields": {
+      "title": "Eerie Failing Grotto",
+      "description": "A faeries light...",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 29,
+      "w_to": 0,
+      "x": 4,
+      "y": 2
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 29,
+    "fields": {
+      "title": "Puny Picturesque Grotto",
+      "description": "A faeries light...",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 30,
+      "w_to": 0,
+      "x": 5,
+      "y": 2
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 30,
+    "fields": {
+      "title": "Cold Wooden Pits",
+      "description": "Deep in the muck",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 31,
+      "w_to": 0,
+      "x": 6,
+      "y": 2
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 31,
+    "fields": {
+      "title": "Marvelous Forsaken Passage",
+      "description": "For a player on the go",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 32,
+      "w_to": 0,
+      "x": 7,
+      "y": 2
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 32,
+    "fields": {
+      "title": "Angry Wooden NYT",
+      "description": "A lot of people say its failing",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 33,
+      "w_to": 0,
+      "x": 8,
+      "y": 2
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 33,
+    "fields": {
+      "title": "Puny Failing Burrows",
+      "description": "A field of danger",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 34,
+      "w_to": 0,
+      "x": 9,
+      "y": 2
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 34,
+    "fields": {
+      "title": "Superflous Granite Grotto",
+      "description": "A faeries light...",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 35,
+      "w_to": 0,
+      "x": 10,
+      "y": 2
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 35,
+    "fields": {
+      "title": "Angry Decaying Pits",
+      "description": "Deep in the muck",
+      "n_to": 36,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 0,
+      "x": 11,
+      "y": 2
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 47,
+    "fields": {
+      "title": "Marvelous Granite Pits",
+      "description": "Deep in the muck",
+      "n_to": 48,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 0,
+      "x": 0,
+      "y": 3
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 46,
+    "fields": {
+      "title": "Eternal Decaying Pits",
+      "description": "Deep in the muck",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 47,
+      "x": 1,
+      "y": 3
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 45,
+    "fields": {
+      "title": "Scathing Picturesque Pits",
+      "description": "Deep in the muck",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 46,
+      "x": 2,
+      "y": 3
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 44,
+    "fields": {
+      "title": "Angry Granite Pits",
+      "description": "Deep in the muck",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 45,
+      "x": 3,
+      "y": 3
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 43,
+    "fields": {
+      "title": "Cold Forsaken NYT",
+      "description": "A lot of people say its failing",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 44,
+      "x": 4,
+      "y": 3
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 42,
+    "fields": {
+      "title": "Eerie Picturesque NYT",
+      "description": "A lot of people say its failing",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 43,
+      "x": 5,
+      "y": 3
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 41,
+    "fields": {
+      "title": "Cold Picturesque Grotto",
+      "description": "A faeries light...",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 42,
+      "x": 6,
+      "y": 3
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 40,
+    "fields": {
+      "title": "Marvelous Failing Passage",
+      "description": "For a player on the go",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 41,
+      "x": 7,
+      "y": 3
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 39,
+    "fields": {
+      "title": "Eerie Granite Crypt",
+      "description": "Those buried here will never rest in peace",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 40,
+      "x": 8,
+      "y": 3
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 38,
+    "fields": {
+      "title": "Superflous Forsaken Palace",
+      "description": "An ornamental monstrosity",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 39,
+      "x": 9,
+      "y": 3
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 37,
+    "fields": {
+      "title": "Eternal Failing Burrows",
+      "description": "A field of danger",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 38,
+      "x": 10,
+      "y": 3
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 36,
+    "fields": {
+      "title": "Angry Forsaken NYT",
+      "description": "A lot of people say its failing",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 37,
+      "x": 11,
+      "y": 3
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 48,
+    "fields": {
+      "title": "Superflous Wooden Pits",
+      "description": "Deep in the muck",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 49,
+      "w_to": 0,
+      "x": 0,
+      "y": 4
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 49,
+    "fields": {
+      "title": "Cold Failing Grotto",
+      "description": "A faeries light...",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 50,
+      "w_to": 0,
+      "x": 1,
+      "y": 4
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 50,
+    "fields": {
+      "title": "Scathing Smoldering Stairwell",
+      "description": "Don't trip",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 51,
+      "w_to": 0,
+      "x": 2,
+      "y": 4
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 51,
+    "fields": {
+      "title": "Eternal Forsaken Crypt",
+      "description": "Those buried here will never rest in peace",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 52,
+      "w_to": 0,
+      "x": 3,
+      "y": 4
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 52,
+    "fields": {
+      "title": "Eerie Wooden Crypt",
+      "description": "Those buried here will never rest in peace",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 53,
+      "w_to": 0,
+      "x": 4,
+      "y": 4
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 53,
+    "fields": {
+      "title": "Puny Drafty Pits",
+      "description": "Deep in the muck",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 54,
+      "w_to": 0,
+      "x": 5,
+      "y": 4
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 54,
+    "fields": {
+      "title": "Angry Forsaken Passage",
+      "description": "For a player on the go",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 55,
+      "w_to": 0,
+      "x": 6,
+      "y": 4
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 55,
+    "fields": {
+      "title": "Eerie Failing Pits",
+      "description": "Deep in the muck",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 56,
+      "w_to": 0,
+      "x": 7,
+      "y": 4
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 56,
+    "fields": {
+      "title": "Pulsing Granite Palace",
+      "description": "An ornamental monstrosity",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 57,
+      "w_to": 0,
+      "x": 8,
+      "y": 4
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 57,
+    "fields": {
+      "title": "Angry Failing Grotto",
+      "description": "A faeries light...",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 58,
+      "w_to": 0,
+      "x": 9,
+      "y": 4
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 58,
+    "fields": {
+      "title": "Eternal Decaying Stairwell",
+      "description": "Don't trip",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 59,
+      "w_to": 0,
+      "x": 10,
+      "y": 4
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 59,
+    "fields": {
+      "title": "Marvelous Smoldering Passage",
+      "description": "For a player on the go",
+      "n_to": 60,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 0,
+      "x": 11,
+      "y": 4
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 71,
+    "fields": {
+      "title": "Cold Drafty Palace",
+      "description": "An ornamental monstrosity",
+      "n_to": 72,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 0,
+      "x": 0,
+      "y": 5
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 70,
+    "fields": {
+      "title": "Pulsing Forsaken Burrows",
+      "description": "A field of danger",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 71,
+      "x": 1,
+      "y": 5
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 69,
+    "fields": {
+      "title": "Superflous Wooden NYT",
+      "description": "A lot of people say its failing",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 70,
+      "x": 2,
+      "y": 5
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 68,
+    "fields": {
+      "title": "Cold Forsaken Pits",
+      "description": "Deep in the muck",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 69,
+      "x": 3,
+      "y": 5
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 67,
+    "fields": {
+      "title": "Eerie Wooden Pits",
+      "description": "Deep in the muck",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 68,
+      "x": 4,
+      "y": 5
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 66,
+    "fields": {
+      "title": "Superflous Smoldering Crypt",
+      "description": "Those buried here will never rest in peace",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 67,
+      "x": 5,
+      "y": 5
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 65,
+    "fields": {
+      "title": "Superflous Smoldering Passage",
+      "description": "For a player on the go",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 66,
+      "x": 6,
+      "y": 5
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 64,
+    "fields": {
+      "title": "Pulsing Granite Crypt",
+      "description": "Those buried here will never rest in peace",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 65,
+      "x": 7,
+      "y": 5
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 63,
+    "fields": {
+      "title": "Puny Failing Palace",
+      "description": "An ornamental monstrosity",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 64,
+      "x": 8,
+      "y": 5
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 62,
+    "fields": {
+      "title": "Angry Granite Grotto",
+      "description": "A faeries light...",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 63,
+      "x": 9,
+      "y": 5
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 61,
+    "fields": {
+      "title": "Eternal Wooden Stairwell",
+      "description": "Don't trip",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 62,
+      "x": 10,
+      "y": 5
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 60,
+    "fields": {
+      "title": "Scathing Forsaken Crypt",
+      "description": "Those buried here will never rest in peace",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 61,
+      "x": 11,
+      "y": 5
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 72,
+    "fields": {
+      "title": "Superflous Granite Passage",
+      "description": "For a player on the go",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 73,
+      "w_to": 0,
+      "x": 0,
+      "y": 6
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 73,
+    "fields": {
+      "title": "Pulsing Drafty NYT",
+      "description": "A lot of people say its failing",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 74,
+      "w_to": 0,
+      "x": 1,
+      "y": 6
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 74,
+    "fields": {
+      "title": "Angry Wooden Palace",
+      "description": "An ornamental monstrosity",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 75,
+      "w_to": 0,
+      "x": 2,
+      "y": 6
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 75,
+    "fields": {
+      "title": "Eternal Picturesque Stairwell",
+      "description": "Don't trip",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 76,
+      "w_to": 0,
+      "x": 3,
+      "y": 6
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 76,
+    "fields": {
+      "title": "Marvelous Smoldering Pits",
+      "description": "Deep in the muck",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 77,
+      "w_to": 0,
+      "x": 4,
+      "y": 6
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 77,
+    "fields": {
+      "title": "Scathing Granite NYT",
+      "description": "A lot of people say its failing",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 78,
+      "w_to": 0,
+      "x": 5,
+      "y": 6
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 78,
+    "fields": {
+      "title": "Eternal Decaying Passage",
+      "description": "For a player on the go",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 79,
+      "w_to": 0,
+      "x": 6,
+      "y": 6
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 79,
+    "fields": {
+      "title": "Pulsing Decaying Palace",
+      "description": "An ornamental monstrosity",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 80,
+      "w_to": 0,
+      "x": 7,
+      "y": 6
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 80,
+    "fields": {
+      "title": "Marvelous Drafty Burrows",
+      "description": "A field of danger",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 81,
+      "w_to": 0,
+      "x": 8,
+      "y": 6
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 81,
+    "fields": {
+      "title": "Eternal Picturesque Palace",
+      "description": "An ornamental monstrosity",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 82,
+      "w_to": 0,
+      "x": 9,
+      "y": 6
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 82,
+    "fields": {
+      "title": "Pulsing Failing Burrows",
+      "description": "A field of danger",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 83,
+      "w_to": 0,
+      "x": 10,
+      "y": 6
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 83,
+    "fields": {
+      "title": "Cold Wooden NYT",
+      "description": "A lot of people say its failing",
+      "n_to": 84,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 0,
+      "x": 11,
+      "y": 6
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 95,
+    "fields": {
+      "title": "Eternal Smoldering Stairwell",
+      "description": "Don't trip",
+      "n_to": 96,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 0,
+      "x": 0,
+      "y": 7
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 94,
+    "fields": {
+      "title": "Cold Failing Crypt",
+      "description": "Those buried here will never rest in peace",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 95,
+      "x": 1,
+      "y": 7
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 93,
+    "fields": {
+      "title": "Cold Picturesque Pits",
+      "description": "Deep in the muck",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 94,
+      "x": 2,
+      "y": 7
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 92,
+    "fields": {
+      "title": "Eerie Forsaken Grotto",
+      "description": "A faeries light...",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 93,
+      "x": 3,
+      "y": 7
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 91,
+    "fields": {
+      "title": "Scathing Wooden Stairwell",
+      "description": "Don't trip",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 92,
+      "x": 4,
+      "y": 7
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 90,
+    "fields": {
+      "title": "Puny Drafty Palace",
+      "description": "An ornamental monstrosity",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 91,
+      "x": 5,
+      "y": 7
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 89,
+    "fields": {
+      "title": "Superflous Failing Palace",
+      "description": "An ornamental monstrosity",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 90,
+      "x": 6,
+      "y": 7
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 88,
+    "fields": {
+      "title": "Marvelous Drafty Stairwell",
+      "description": "Don't trip",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 89,
+      "x": 7,
+      "y": 7
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 87,
+    "fields": {
+      "title": "Cold Forsaken Palace",
+      "description": "An ornamental monstrosity",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 88,
+      "x": 8,
+      "y": 7
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 86,
+    "fields": {
+      "title": "Eternal Failing NYT",
+      "description": "A lot of people say its failing",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 87,
+      "x": 9,
+      "y": 7
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 85,
+    "fields": {
+      "title": "Cold Drafty Pits",
+      "description": "Deep in the muck",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 86,
+      "x": 10,
+      "y": 7
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 84,
+    "fields": {
+      "title": "Puny Forsaken Passage",
+      "description": "For a player on the go",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 85,
+      "x": 11,
+      "y": 7
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 96,
+    "fields": {
+      "title": "Cold Granite Grotto",
+      "description": "A faeries light...",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 97,
+      "w_to": 0,
+      "x": 0,
+      "y": 8
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 97,
+    "fields": {
+      "title": "Scathing Failing Pits",
+      "description": "Deep in the muck",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 98,
+      "w_to": 0,
+      "x": 1,
+      "y": 8
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 98,
+    "fields": {
+      "title": "Angry Granite Palace",
+      "description": "An ornamental monstrosity",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 99,
+      "w_to": 0,
+      "x": 2,
+      "y": 8
+    }
+  },
+  {
+    "model": "adventure.room",
+    "pk": 99,
+    "fields": {
+      "title": "Puny Wooden Palace",
+      "description": "An ornamental monstrosity",
+      "n_to": 0,
+      "s_to": 0,
+      "e_to": 0,
+      "w_to": 0,
+      "x": 3,
+      "y": 8
+    }
+  }
+]

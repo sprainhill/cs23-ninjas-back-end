@@ -1,19 +1,34 @@
-# algorithm to procedurally generate room patterns and content
+import json
+import math
+import random
+
+from room_generator import ProceduralContent
+
+# pseduo code for adding
+pc = ProceduralContent()
+listy = pc.generator()
+print(listy)
+# randomSel = random.randint(0, len(listy))
+# listy[randomSel]['name']
+# listy[randomSel]['desc']
+# listy.pop(randomSel)
+
+
 class Room:
-    def __init__(self, id, name, description, x, y):
+    def __init__(self, id, name, description, x, y, n=0, s=0, e=0, w=0):
         self.id = id
         self.name = name
         self.description = description
-        self.n_to = None
-        self.s_to = None
-        self.e_to = None
-        self.w_to = None
+        self.n_to = n
+        self.s_to = s
+        self.e_to = e
+        self.w_to = w
         self.x = x
         self.y = y
+
     def __repr__(self):
-        if self.e_to is not None:
-            return f"({self.x}, {self.y}) -> ({self.e_to.x}, {self.e_to.y})"
-        return f"({self.x}, {self.y})"
+        return f"{self.x}"
+
     def connect_rooms(self, connecting_room, direction):
         '''
         Connect two rooms in the given n/s/e/w direction
@@ -22,6 +37,7 @@ class Room:
         reverse_dir = reverse_dirs[direction]
         setattr(self, f"{direction}_to", connecting_room)
         setattr(connecting_room, f"{reverse_dir}_to", self)
+
     def get_room_in_direction(self, direction):
         '''
         Connect two rooms in the given n/s/e/w direction
@@ -34,95 +50,163 @@ class World:
         self.grid = None
         self.width = 0
         self.height = 0
+        self.directions = ['n', 's', 'e', 'w']
+
     def generate_rooms(self, size_x, size_y, num_rooms):
         '''
         Fill up the grid, bottom to top, in a zig-zag pattern
         '''
 
-        # define grid size
-        # creates height of grid
+        # Initialize the grid
         self.grid = [None] * size_y
         self.width = size_x
         self.height = size_y
-        for i in range( len(self.grid) ):
+
+        for i in range(len(self.grid)):
             self.grid[i] = [None] * size_x
-        
-        # begin plot in middle of grid
 
-        # if self.grid[0] is None and self.grid[0][0] is None:
-        #     # set starting room to middle of grid
-        #     start_x = math.ceil(len(self.grid[0]) // 2)
-        #     start_y = math.ceil(len(self.grid) // 2)
-
-        # Start from lower-left corner (0,0)
-        x = -1 # (this will become 0 on the first step)
-        y = 0
+        # Start from middle of grid (0,0)
+        x = math.ceil(len(self.grid[0]) / 2)
+        y = math.ceil(len(self.grid) / 2)
         room_count = 0
-
-        # Start generating rooms to the east
-        direction = 1  # 1: east, -1: west
-
-
-        # While there are rooms to be created...
         previous_room = None
-        while room_count < num_rooms:
-            if direction > 0 and x < size_x - 1:
-                room_direction = "e"
-                x += 1
-            elif direction < 0 and x > 0:
-                room_direction = "w"
-                x -= 1
-            else:
-                room_direction = "n"
-                y += 1
-                direction *= -1
-            
-            # create room for insertion
+        node_directions = []
 
-            ###
-            ### randomize selection from three lists of attributes
-            ###
+        # Check if genesis grid point doesn't exist
+        if self.grid[0] is None and self.grid[0][0] is None:
+            """
+            Create genesis grid point/room
+            """
+            # Generate bewteen 1-4 directions
+            direction_amount = math.floor(random.random() * 4 + 1)
 
+            # Shuffle directions, and set starting nodes directions to create
+            # node_directions = random.sample(
+            #     self.directions, len(direction_amount))
 
-            # Create a room in the given direction
-            room = Room(room_count, "A Generic Room", "This is a generic room.", x, y)
+            # Create first room
+            randomSel = random.randint(0, len(listy))
+            rumName = listy[randomSel]['name']
+            rumDesc = listy[randomSel]['desc']
+            listy.pop(randomSel)
+            room = Room(room_count, rumName, rumDesc, x, y)
 
-            ## Create inverse room
-            # inverseX = x *= -1
-            # inverseX = y *= -1
-            # inverse = Room(room_count, "An inverse room", "this is an inverse room.", inverseX, inverseY )
-            
-
-            # insert room into grid
-            # inserts into the x-axis list item within the y-axis list
+            # Save the room in the World grid
             self.grid[y][x] = room
-
-            #insert inverse into grid
-            ###
-            ### do we need to adjust the grid to accept?
-            ###
-            # self.grid[inverseY][inverseX]
-
-            # Connect the new room to the previous room
-            if previous_room is not None:
-                previous_room.connect_rooms(room, room_direction)
-
-            # Update iteration variables
+            # Set previous room
             previous_room = room
+            # Increment room amount
             room_count += 1
+            add_nodes()
 
-            ## maybe create the inverse room at the end 
+            # we have now added the genesis node
+            # we need to run some logic on the genesis node
+            # that will look for which directions are available to move
+            # then add those to node_directions
+            # then select two directions
+            # create nodes at those two locations
+            # and then call the method of those
+            # two nodes
 
-            ## iterate over grid
-            ## for each item in the grid
-            ## invert the x and y coordinates
-            ## reverse the connection
+            # select node
+            node = room
 
-            # we have a list in a list
-            # whats a good data structure to use
-            # to iterate over that?
+            # check available directions
+            if node.n_to is None:
+                print(f"We will take the North")
+                node_directions.push("n")
+            elif node.s_to is None:
+                print(f"The South is ours")
+                node_directions.push("s")
+            elif node.e_to is None:
+                print(f"East. East we shall go.")
+                node_directions.push("e")
+            elif node.w_to is None:
+                print(f"Go West young man")
+                node_directions.push("w")
+            
+            # generate random int between 1 and len(node_directions)
+            # in future will be 0 to len(node_directions)
+            amountMoves = random.randint(1, len(node_directions))
+
+            # establish amountMoves amount of new nodes
+            for i in range(amountMoves):
+                randomSel = random.randint(0, len(listy))
+                rumName = listy[randomSel]['name']
+                rumDesc = listy[randomSel]['desc']
+                listy.pop(randomSel)
+                # check direction and alter coordinates
+                if node_directions[i] == "n":
+                    y += 1
+
+                if node_directions[i] == "s":
+                    y -= 1
+                
+                if node_directions[i] == "e":
+                    x += 1
+                
+                if node_directions[i] == "w":
+                    x -= 1
+
+                room = Room(room_count, rumName, rumDesc, x, y)
+
+                # add room to grid
+                self.grid[y][x] = room
+
+                 # Set previous room
+                previous_room = room
+                
+                room_count += 1
 
 
+        else:
+            while num_rooms > room_count:
+                add_nodes()
+
+                def add_nodes(self):
+                    node = previous_room
+                    # check available directions
+                    if node.n_to is None:
+                        print(f"We will take the North")
+                        node_directions.push("n")
+                    elif node.s_to is None:
+                        print(f"The South is ours")
+                        node_directions.push("s")
+                    elif node.e_to is None:
+                        print(f"East. East we shall go.")
+                        node_directions.push("e")
+                    elif node.w_to is None:
+                        print(f"Go West young man")
+
+                    # generate random int between 1 and len(node_directions)
+                    # in future will be 0 to len(node_directions)
+                    amountMoves = random.randint(1, len(node_directions))
+
+                    # establish amountMoves amount of new nodes
+                    for i in range(amountMoves):
+                        randomSel = random.randint(0, len(listy))
+                        rumName = listy[randomSel]['name']
+                        rumDesc = listy[randomSel]['desc']
+                        listy.pop(randomSel)
+                        # check direction and alter coordinates
+                        if node_directions[i] == "n":
+                            y += 1
+
+                        if node_directions[i] == "s":
+                            y -= 1
+
+                        if node_directions[i] == "e":
+                            x += 1
+
+                        if node_directions[i] == "w":
+                            x -= 1
+
+                        room = Room(room_count, rumName, rumDesc, x, y)
+
+                        # add room to grid
+                        self.grid[y][x] = room
+
+                        room_count += 1
 
     def print_rooms(self):
         '''
@@ -136,7 +220,7 @@ class World:
         # bottom to top.
         #
         # We reverse it so it draws in the right direction.
-        reverse_grid = list(self.grid) # make a copy of the list
+        reverse_grid = list(self.grid)  # make a copy of the list
         reverse_grid.reverse()
         for row in reverse_grid:
             # PRINT NORTH CONNECTION ROW
@@ -178,14 +262,49 @@ class World:
         # Print string
         print(str)
 
+    def gen_fixture(self):
+        """
+        Generates create_world fixture
+        """
+
+        # Flatten grid of rooms
+        flat_list = [item for sublist in self.grid for item in sublist]
+
+        formatted_fixture = []
+
+        for i, room in enumerate(flat_list, start=0):
+            if room is None:
+                break
+
+            formatted_room = {}
+
+            formatted_room["model"] = 'adventure.room'
+            formatted_room["pk"] = room.id
+            formatted_room["fields"] = {
+                "title": room.name,
+                "description": room.description,
+                "n_to": room.n_to,
+                "s_to": room.s_to,
+                "e_to": room.e_to,
+                "w_to": room.w_to,
+                "x": room.x,
+                "y": room.y,
+            }
+
+            formatted_fixture.append(formatted_room)
+
+        f = open('generated_world.json', "w+")
+        f.write(str(formatted_fixture))
+        f.close()
+
 
 w = World()
-num_rooms = 80
-width = 10
-height = 10
+num_rooms = 3
+width = 8
+height = 7
 w.generate_rooms(width, height, num_rooms)
-w.print_rooms()
+w.gen_fixture()
 
 
-
-print(f"\n\nWorld\n  height: {height}\n  width: {width},\n  num_rooms: {num_rooms}\n")
+print(
+    f"\n\nWorld\n  height: {height}\n  width: {width},\n  num_rooms: {num_rooms}\n")
