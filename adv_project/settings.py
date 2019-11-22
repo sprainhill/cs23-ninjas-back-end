@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'allauth.account',
     'rest_auth.registration',
     'whitenoise.runserver_nostatic',
-    'channels',
 ]
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -163,4 +162,4 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR,'staticfiles/img')
 import django_heroku
 django_heroku.settings(locals())
 
-# Comment to commit
+# Comment to update commit
